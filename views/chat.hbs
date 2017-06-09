@@ -5,17 +5,18 @@
 </head>
 <body>
   <h1>Chat app</h1>
-  <input id='message' onekeypress='send_messages(event)' />
+  <input id='message' onkeypress='send_message(event)' />
   <pre id='chat-box'></pre>
   <script src='/socket.io/socket.io.js'></script>
   <script>
   var server= io();
+  var room;
 
   server.on('connect', function (s){
     console.log('connected');
     var url =new URL(location.href);
     room = url.searchParams.get('room') || 'main-room';
-    server.emit('join-room')
+    server.emit('join-room', room);
   });
   server.on('chat-msg', function (msg){
     var chat= document.getElementById('chat-box');
@@ -24,7 +25,7 @@
   function send_message (event){
     var char = event.which || event.keyCode;
     if (char == '13'){
-      var msg = document.getElementBYId('message');
+      var msg = document.getElementById('message');
       server.emit('incoming', msg.value);
       // server.emit('incoming', {room: room, msg: msg.value});
       msg.value ='';

@@ -29,7 +29,7 @@ console.log('Listening on port 8000')
 // client.on('join-room', function (room){
 //   client.join(room, function(){
 //     consol.log(client.rooms);
-//     io.to(msg.room).emit('chat-message', '**new user joined**');
+//     io.to(room).emit('chat-msg', '**new user joined**');
 //   });
 //
 //   client.on('incoming', function (msg){
