@@ -13,6 +13,9 @@
 
   server.on('connect', function (s){
     console.log('connected');
+    var url =new URL(location.href);
+    room = url.searchParams.get('room') || 'main-room';
+    server.emit('join-room')
   });
   server.on('chat-msg', function (msg){
     var chat= document.getElementById('chat-box');
@@ -23,6 +26,7 @@
     if (char == '13'){
       var msg = document.getElementBYId('message');
       server.emit('incoming', msg.value);
+      // server.emit('incoming', {room: room, msg: msg.value});
       msg.value ='';
     }
   }
