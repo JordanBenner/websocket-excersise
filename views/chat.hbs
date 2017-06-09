@@ -26,8 +26,10 @@
     var char = event.which || event.keyCode;
     if (char == '13'){
       var msg = document.getElementById('message');
-      server.emit('incoming', msg.value);
-      // server.emit('incoming', {room: room, msg: msg.value});
+      //incoming for mass mesging
+      // server.emit('incoming', msg.value);
+      //incoming room for private msg
+      server.emit('incoming', {room: room, msg: msg.value});
       msg.value ='';
     }
   }

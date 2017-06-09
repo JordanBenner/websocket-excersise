@@ -26,14 +26,14 @@ console.log('Listening on port 8000')
 
 //private chat//
 
-// client.on('join-room', function (room){
-//   client.join(room, function(){
-//     consol.log(client.rooms);
-//     io.to(room).emit('chat-msg', '**new user joined**');
-//   });
-//
-//   client.on('incoming', function (msg){
-//     io.to(msg.room)emit('chat-msg', msg.msg)
-//   });
-// });
-// });
+client.on('join-room', function (room){
+  client.join(room, function(){
+    consol.log(client.rooms);
+    io.to(room).emit('chat-msg', '**new user joined**');
+  });
+
+  client.on('incoming', function (msg){
+    io.to(msg.room)emit('chat-msg', msg.msg)
+  });
+});
+});
